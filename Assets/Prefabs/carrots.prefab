@@ -87,8 +87,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: carrots
       objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: e93caedad0d6a37478e65d5c152dea6d, type: 3}
+      propertyPath: m_TagString
+      value: Obstacles
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e93caedad0d6a37478e65d5c152dea6d, type: 3}
+--- !u!1 &2729797796333735739 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8164078558771037576, guid: e93caedad0d6a37478e65d5c152dea6d, type: 3}
+  m_PrefabInstance: {fileID: 6101975693832456883}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &8815906584715732574
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2729797796333735739}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.73462933, y: 0.71104, z: 0.6331745}
+  m_Center: {x: 0.0016837418, y: 0.25877398, z: -0.14047948}
 --- !u!4 &5990961701825998168 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e93caedad0d6a37478e65d5c152dea6d, type: 3}

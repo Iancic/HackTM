@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2613391240118399252}
   m_Layer: 0
-  m_Name: lawnmower
+  m_Name: Lawnmower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -144,7 +144,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dfcf8a9feffe1b4e8d6a6c50dd8f601, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  for_Speed: 0
   money_text: {fileID: 0}
+  money_text_notif: {fileID: 0}
+  current_time: 0
+  show_time: 0
   timer: {fileID: 0}
   percentage_text: {fileID: 0}
   grass_list: []

@@ -5,15 +5,15 @@ using TMPro;
 
 public class Lawnmower_Controller : MonoBehaviour
 {
-    private float for_Speed = 0.03f; //0.02f
+    public float for_Speed = 0f; //0.05f
     private float rot_Speed = 200f; // 200f
 
     private int money;
 
     public TMP_Text money_text;
+    public TMP_Text money_text_notif;
 
-    private float current_time, show_time;
-    private float starting_time = 60f;
+    public float current_time, show_time;
     public TMP_Text timer;
 
     public TMP_Text percentage_text;
@@ -22,8 +22,6 @@ public class Lawnmower_Controller : MonoBehaviour
 
     void Start()
     {
-        current_time = starting_time;
-
         //percentage
         grass_list = GameObject.FindGameObjectsWithTag("Grass");
         initial = grass_list.Length;
@@ -38,21 +36,21 @@ public class Lawnmower_Controller : MonoBehaviour
         }
         MoveForward();
 
+        //percentage
+        percentage = (how_much_grass * 100) / initial;
+        percentage_text.SetText(percentage.ToString() + "%");
 
         //Counter
         current_time -= 1 * Time.deltaTime;
         show_time = Mathf.Round(current_time);
-        timer.SetText(show_time.ToString() + " left");
+        timer.SetText(show_time.ToString() + "s");
 
         if (current_time <= 0)
         {
             current_time = 0;
+            timer.SetText(" ");
+            percentage_text.SetText(" ");
         }
-
-
-        //percentage
-        percentage = (how_much_grass * 100) / initial;
-        percentage_text.SetText(percentage.ToString() + "%");
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -62,13 +60,21 @@ public class Lawnmower_Controller : MonoBehaviour
             Destroy(collision.gameObject);
             money += 1;
             money_text.SetText("$" + money.ToString());
-            how_much_grass += 1;
+            how_much_grass += 10;
+            money_text_notif.SetText("+10");
+            money_text_notif.color = Color.green;
         }
-        if (collision.gameObject.tag == "Obstacles")
+        else if (collision.gameObject.tag == "Obstacles")
         {
             Destroy(collision.gameObject);
             money -= 50;
             money_text.SetText("$" + money.ToString());
+            money_text_notif.SetText("-50");
+            money_text_notif.color = Color.red;
+        }
+        else if (collision.gameObject.tag != "Grass")
+        {
+            money_text_notif.SetText("");
         }
     }
 
