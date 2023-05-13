@@ -20,7 +20,6 @@ public class Counter : MonoBehaviour
     void Start()
     {
         current_time = intro_time;
-        //Time.timeScale = 0f;
     }
 
     void Update()

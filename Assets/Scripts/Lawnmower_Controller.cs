@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Lawnmower_Controller : MonoBehaviour
 {
@@ -20,11 +21,16 @@ public class Lawnmower_Controller : MonoBehaviour
     public GameObject[] grass_list;
     public int total, initial, percentage, how_much_grass;
 
+    public AudioSource cutaudio, grassaudio;
+
     void Start()
     {
         //percentage
         grass_list = GameObject.FindGameObjectsWithTag("Grass");
         initial = grass_list.Length;
+        cutaudio = GetComponent<AudioSource>();
+        grassaudio = GetComponent<AudioSource>();
+
     }
 
     private void Update()
@@ -37,8 +43,8 @@ public class Lawnmower_Controller : MonoBehaviour
         MoveForward();
 
         //percentage
-        percentage = (how_much_grass * 100) / initial;
-        percentage_text.SetText(percentage.ToString() + "%");
+        //percentage = (how_much_grass * 100) / initial;
+        percentage_text.SetText(how_much_grass.ToString() + " grass cut");
 
         //Counter
         current_time -= 1 * Time.deltaTime;
@@ -51,6 +57,17 @@ public class Lawnmower_Controller : MonoBehaviour
             timer.SetText(" ");
             percentage_text.SetText(" ");
         }
+
+        //win and lose condition
+
+        if (money >= 5000)
+        {
+            //SceneManager.LoadScene("Victory");
+        }
+        else
+        {
+            //SceneManager.LoadScene("Defeat");
+        }
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -58,18 +75,20 @@ public class Lawnmower_Controller : MonoBehaviour
         if (collision.gameObject.tag == "Grass")
         {
             Destroy(collision.gameObject);
-            money += 1;
+            grassaudio.Play();
+            money += 5;
             money_text.SetText("$" + money.ToString());
-            how_much_grass += 10;
-            money_text_notif.SetText("+10");
+            how_much_grass += 1;
+            money_text_notif.SetText("+5");
             money_text_notif.color = Color.green;
         }
         else if (collision.gameObject.tag == "Obstacles")
         {
             Destroy(collision.gameObject);
-            money -= 50;
+            cutaudio.Play();
+            money -= 25;
             money_text.SetText("$" + money.ToString());
-            money_text_notif.SetText("-50");
+            money_text_notif.SetText("-25");
             money_text_notif.color = Color.red;
         }
         else if (collision.gameObject.tag != "Grass")
