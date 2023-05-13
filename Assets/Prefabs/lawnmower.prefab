@@ -87,6 +87,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lawnmower
       objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: a90fe83030c2f874a8d9f4598e7e84b8, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a90fe83030c2f874a8d9f4598e7e84b8, type: 3}
 --- !u!4 &2947674768730517120 stripped
@@ -141,3 +145,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   money_text: {fileID: 0}
+  timer: {fileID: 0}
+  percentage_text: {fileID: 0}
+  grass_list: []
+  total: 0
+  initial: 0
+  percentage: 0
+  how_much_grass: 0
