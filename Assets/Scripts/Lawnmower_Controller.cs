@@ -58,16 +58,6 @@ public class Lawnmower_Controller : MonoBehaviour
             percentage_text.SetText(" ");
         }
 
-        //win and lose condition
-
-        if (money >= 5000)
-        {
-            //SceneManager.LoadScene("Victory");
-        }
-        else
-        {
-            //SceneManager.LoadScene("Defeat");
-        }
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -94,6 +84,17 @@ public class Lawnmower_Controller : MonoBehaviour
         else if (collision.gameObject.tag != "Grass")
         {
             money_text_notif.SetText("");
+        }
+
+        //win and lose condition
+
+        if (money >= 5000)
+        {
+            SceneManager.LoadScene("WIN");
+        }
+        else if (current_time <= 0)
+        {
+            SceneManager.LoadScene("Defeat");
         }
     }
 
